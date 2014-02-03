@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ubuntu-wls12</groupId>
+  <artifactId>ubuntu-wls12</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Ubuntu WLS12 Install POM</name>
+  <!-- this pom is only used to run install and create-domain targets of wls-maven-plugin -->
+  <build>
+	<plugins>
+	  <plugin>
+	    <groupId>com.oracle.weblogic</groupId>
+	    <artifactId>wls-maven-plugin</artifactId>
+	    <version>12.1.2.0</version>
+	    <configuration>
+	      <adminurl>http://localhost:7001</adminurl>
+	      <user>weblogic</user>
+	      <password>welcome1</password>
+	      <upload>true</upload>
+	      <remote>true</remote>
+	      <verbose>true</verbose>
+	      <targets>adminserver</targets>
+	      <middlewareHome>/home/vagrant/weblogic12</middlewareHome>
+	      <domainHome>/home/vagrant/weblogic12/mydomain</domainHome>
+	      <artifactLocation>/vagrant/wls12_install/wls1212_dev.zip</artifactLocation>
+	    </configuration>
+	  </plugin>
+	</plugins>
+  </build>
+
+</project>
