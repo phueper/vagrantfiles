@@ -140,7 +140,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #info = vb.customize ["showvminfo", :id]
       #vb.customize ["modifyhd", :id]
     end
-    #ubuntu_wls12.vm.network "private_network", ip: "192.168.57.100"
+    ubuntu_wls12.vm.network "private_network", type: :dhcp #, ip: "192.168.57.100"
 
     # install chef using omnibus installer using shell
     ubuntu_wls12.vm.provision :shell, :inline => "which chef-solo || curl -L https://www.opscode.com/chef/install.sh | bash"
