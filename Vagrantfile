@@ -119,6 +119,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   #phueper settings
+  #
+  #vbguest install, needs vagrant plugin install vagrant-vbguest
+  config.vbguest.auto_update = true
+  config.vbguest.no_remote = true
   # ubuntu_wls12 machine
   config.vm.define :ubuntu_wls12 do |ubuntu_wls12|
     ubuntu_wls12.vm.box = "ubuntu_12.04_64"
@@ -148,7 +152,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #chef.data_bags_path = "databags"
       #chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
 
-      chef.add_recipe "ubuntu_wls12"
+      chef.add_recipe "ubuntu-desktop"
     end
   end
 end
