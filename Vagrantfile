@@ -147,12 +147,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # chef-solo setup
     ubuntu_wls12.vm.provision :chef_solo do |chef|
-      chef.log_level = "debug"
+      chef.log_level = :debug
       # contains "users" and "ssh_known_hosts" databags
       #chef.data_bags_path = "databags"
       #chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
 
       chef.add_recipe "ubuntu-desktop"
+      #fix for https://tickets.opscode.com/browse/CHEF-4725 (chef output buffering)
+      chef.custom_config_path = 'chef_streaming_fix.rb' #this file must be created 
     end
   end
 end
