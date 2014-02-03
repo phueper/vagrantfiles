@@ -153,6 +153,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
 
       chef.add_recipe "ubuntu-desktop"
+      chef.add_recipe "weblogic12"
       #fix for https://tickets.opscode.com/browse/CHEF-4725 (chef output buffering)
       chef.custom_config_path = 'chef_streaming_fix.rb' #this file must be created 
     end

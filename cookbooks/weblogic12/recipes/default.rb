@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# vi: set shiftwidth=2 tabstop=2 expandtab :
 #
 # Cookbook Name:: weblogic12
 # Recipe:: default
@@ -6,3 +9,48 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+#
+#we need maven, since i want to install the 
+#weblogic server using wls-maven-plugin
+package "maven" do
+	action :install
+end
+
+execute "unzip maven plugin" do
+  user "vagrant"
+  group "vagrant"
+  cwd "/home/vagrant"
+  creates "/home/vagrant/wls-maven-plugin.jar.pack"
+  command "unzip -j /vagrant/wls12_install/wls1212_dev.zip \"*wlserver/server/lib/wls-maven-plugin*\" \"*wlserver/server/lib/pom.xml\""
+end
+
+execute "unpack maven plugin" do
+  user "vagrant"
+  group "vagrant"
+  cwd "/home/vagrant"
+  creates "/home/vagrant/wls-maven-plugin.jar"
+  command "unpack200 wls-maven-plugin.jar.pack wls-maven-plugin.jar"
+end
+
+execute "install maven plugin" do
+  user "vagrant"
+  group "vagrant"
+  cwd "/home/vagrant"
+  command "mvn install:install-file -Dfile=wls-maven-plugin.jar -DpomFile=pom.xml"
+end
+
+execute "install wls12" do
+  user "vagrant"
+  group "vagrant"
+  cwd "/home/vagrant"
+  command "mvn -f/vagrant/wls12_install/pom.xml com.oracle.weblogic:wls-maven-plugin:install | tee mvn_wls_install.out.txt "
+end
+
+execute "create-domain wls12" do
+  user "vagrant"
+  group "vagrant"
+  cwd "/home/vagrant"
+  command "mvn -f/vagrant/wls12_install/pom.xml com.oracle.weblogic:wls-maven-plugin:create-domain | tee mvn_wls_create-domain.out.txt"
+end
+
+log "wls12 installed in /home/vagrant/weblogic12, run /home/vagrant/weblogic12/mydomain/startWeblogic.sh to start"
