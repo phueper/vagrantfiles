@@ -135,12 +135,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #debug
       vb.gui = true
       #restrict cpu
-      vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      # memory
+      vb.customize ["modifyvm", :id, "--memory", "1500" ]
+      #network, i want vboxnet0, nic1 is NAT for internet access, i need hostonly vboxnet0 to access from host and e.g. the DB VM
+      vb.customize ["modifyvm", :id, "--nic2", "hostonly", "--hostonlyadapter2", "vboxnet0" ]
       # change memory and add swap disk
       #info = vb.customize ["showvminfo", :id]
       #vb.customize ["modifyhd", :id]
     end
-    ubuntu_wls12.vm.network "private_network", type: :dhcp #, ip: "192.168.57.100"
+    #ubuntu_wls12.vm.network "private_network", type: :dhcp #, ip: "192.168.57.100"
 
     # install chef using omnibus installer using shell
     ubuntu_wls12.vm.provision :shell, :inline => "which chef-solo || curl -L https://www.opscode.com/chef/install.sh | bash"
