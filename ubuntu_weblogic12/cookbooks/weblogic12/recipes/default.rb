@@ -56,11 +56,13 @@ execute "create-domain wls12" do
 end
 
 #setDomainEnv has wrong JAVA_HOME
-execute "fix JAVA_HOME" do
+#also, MEM_ARGS="-XX:MaxPermSize=512M -Xmx1024M"
+execute "WebLogic Domain UserOverrides" do
   user "vagrant"
   group "vagrant"
   cwd "/home/vagrant"
-  command "sed -e 's/java-6-openjdk-amd64/java-6-openjdk-amd64\\/jre/g' -i weblogic12/mydomain/bin/setDomainEnv.sh 2>&1 | tee sed_JAVA_HOME.out.txt"
+  creates "/home/vagrant/weblogic12/mydomain/bin/setUserOverrides.sh"
+  command "cp /vagrant/wls12_install/setUserOverrides.sh weblogic12/mydomain/bin/ 2>&1 | tee cp_UserOverrides.out.txt"
 end
 
 execute "fix permissions" do
