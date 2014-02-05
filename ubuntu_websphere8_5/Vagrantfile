@@ -129,7 +129,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # this is a 12.04 LTS VirtualBox image
     ubuntu_was8_5.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
-    ubuntu_was8_5.vm.hostname = "ubuntu-was8_5.local"
+    ubuntu_was8_5.vm.hostname = "ubuntu-was8.5.local"
 
     config.vm.provider "virtualbox" do |vb|
       #debug
