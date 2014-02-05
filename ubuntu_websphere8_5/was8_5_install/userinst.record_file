@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--The "acceptLicense" attribute has been deprecated. Use "-acceptLicense" command line option to accept license agreements.-->
+<agent-input acceptLicense='true'>
+<server>
+<repository location='/tmp/installerRepository7055654854008284969.tmp'/>
+<repository location='/home/vagrant/was_8.5_install'/>
+<repository location='http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL'/>
+</server>
+<profile id='IBM HTTP Server V8.5' installLocation='/home/vagrant/IBM/HTTPServer'>
+<data key='eclipseLocation' value='/home/vagrant/IBM/HTTPServer'/>
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.os' value='linux'/>
+<data key='cic.selector.arch' value='x86'/>
+<data key='cic.selector.ws' value='gtk'/>
+<data key='user.ihs.allowNonRootSilentInstall' value='false'/>
+<data key='user.ihs.http.server.service.name' value='none'/>
+<data key='user.ihs.httpPort' value='8080'/>
+<data key='user.ihs.installHttpService' value='false'/>
+<data key='cic.selector.nl' value='en'/>
+</profile>
+<install modify='false'>
+<offering id='com.ibm.websphere.IHSILAN.v85' version='8.5.5001.20131018_2242' profile='IBM HTTP Server V8.5' features='core.feature,arch.64bit' installFixes='none'/>
+<offering id='com.ibm.cic.agent' version='1.6.2000.20130301_2248' profile='IBM Installation Manager' features='agent_core,agent_jre' installFixes='none'/>
+<offering id='8.5.5.0-WS-WASProd-IFPI04967' version='8.5.5000.20131031_1321' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='8.5.5.1-WS-WAS-IFPI06015' version='8.5.5001.20131121_1228' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='8.5.5.1-WS-WAS-IFPM94437' version='8.5.5001.20140110_1345' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='8.5.5.1-WS-WASProd-IFPI05685' version='8.5.5001.20131129_1921' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='8.5.5.1-WS-WASProd-IFPI05987' version='8.5.5001.20131113_1525' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='8.5.5.1-WS-WASProd-IFPM91417' version='8.5.5001.20131205_0907' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='8.5.5.1-WS-WASProd-IFPM94922' version='8.5.5001.20131113_1234' profile='IBM WebSphere Application Server V8.5' features='-'/>
+<offering id='com.ibm.websphere.DEVELOPERSILAN.v85' version='8.5.5001.20131018_2242' profile='IBM WebSphere Application Server V8.5' features='core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit,samples' installFixes='none'/>
+</install>
+<profile id='IBM Installation Manager' installLocation='/home/vagrant/IBM/InstallationManager/eclipse' kind='self'>
+<data key='eclipseLocation' value='/home/vagrant/IBM/InstallationManager/eclipse'/>
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.os' value='linux'/>
+<data key='cic.selector.arch' value='x86_64'/>
+<data key='cic.selector.ws' value='gtk'/>
+</profile>
+<profile id='IBM WebSphere Application Server V8.5' installLocation='/home/vagrant/IBM/WebSphere/AppServer'>
+<data key='eclipseLocation' value='/home/vagrant/IBM/WebSphere/AppServer'/>
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.os' value='linux'/>
+<data key='cic.selector.arch' value='x86'/>
+<data key='cic.selector.ws' value='gtk'/>
+<data key='cic.selector.nl' value='en'/>
+</profile>
+<preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='/home/vagrant/IBM/IMShared'/>
+<preference name='com.ibm.cic.common.core.preferences.connectTimeout' value='30'/>
+<preference name='com.ibm.cic.common.core.preferences.readTimeout' value='45'/>
+<preference name='com.ibm.cic.common.core.preferences.downloadAutoRetryCount' value='0'/>
+<preference name='offering.service.repositories.areUsed' value='true'/>
+<preference name='com.ibm.cic.common.core.preferences.ssl.nonsecureMode' value='false'/>
+<preference name='com.ibm.cic.common.core.preferences.http.disablePreemptiveAuthentication' value='false'/>
+<preference name='http.ntlm.auth.kind' value='NTLM'/>
+<preference name='http.ntlm.auth.enableIntegrated.win32' value='true'/>
+<preference name='com.ibm.cic.common.core.preferences.preserveDownloadedArtifacts' value='true'/>
+<preference name='com.ibm.cic.common.core.preferences.keepFetchedFiles' value='false'/>
+<preference name='PassportAdvantageIsEnabled' value='false'/>
+<preference name='com.ibm.cic.common.core.preferences.searchForUpdates' value='false'/>
+<preference name='com.ibm.cic.agent.ui.displayInternalVersion' value='false'/>
+<preference name='com.ibm.cic.common.sharedUI.showErrorLog' value='true'/>
+<preference name='com.ibm.cic.common.sharedUI.showWarningLog' value='true'/>
+<preference name='com.ibm.cic.common.sharedUI.showNoteLog' value='true'/>
+</agent-input>
