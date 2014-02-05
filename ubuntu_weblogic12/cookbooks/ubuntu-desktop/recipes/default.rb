@@ -7,6 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 #
+#apt-get update first
+#
+execute "apt-get-update" do
+	command "apt-get update"
+	ignore_failure true
+	action :run
+end
+
 package "ubuntu-desktop" do
 	action :install
 end
