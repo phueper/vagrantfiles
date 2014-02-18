@@ -1,6 +1,12 @@
 ubuntu_websphere8.5
 ==================
 
+Needed vagrant plugins:
+
+- vagrant-vbguest
+
+Install: vagrant plugin install <plugin-name>
+
 Ubuntu/WebSphere 8.5 Virtual Machine creation using vagrant and chef-solo
 
 you need to download WAS8.5 Developer 
