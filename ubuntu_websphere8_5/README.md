@@ -15,8 +15,9 @@ The download requires an IBM ID, also for the installer this ID is needed. The c
 
 The file needs to look like this and must be created before running vagrant up:
 
+```
 IBM_USER=<your ibm user id>
 export IBM_USER
 IBM_PWD=<your ibm user id password as cleartext>
 export IBM_PWD
-
+```
