@@ -1,0 +1,2 @@
+# DO NOT use dash as the default system shell (/bin/sh)
+dash	dash/sh	boolean	false
