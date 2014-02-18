@@ -27,3 +27,13 @@ export IBM_USER
 IBM_PWD=<your ibm user id password as cleartext>
 export IBM_PWD
 ```
+
+
+after installation the VM must be restarted (vagrant reload), then Websphere can be started:
+
+- login as user vagrant (default pw: vagrant), e.g. using vagrant ssh
+- run: 
+```
+vagrant@ubuntu-was8:~$ IBM/WebSphere/AppServer/profiles/rplan-profile/bin/startServer.sh server1
+```
+- access admin console: https://<server_ip>:9043/ibm/console (authentication is disabled, use any username (e.g. admin)
