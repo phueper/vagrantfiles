@@ -2,7 +2,6 @@
 <!--The "acceptLicense" attribute has been deprecated. Use "-acceptLicense" command line option to accept license agreements.-->
 <agent-input acceptLicense='true'>
 <server>
-<repository location='/tmp/installerRepository7055654854008284969.tmp'/>
 <repository location='/home/vagrant/was_8.5_install'/>
 <repository location='http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL'/>
 </server>
@@ -12,7 +11,7 @@
 <data key='cic.selector.os' value='linux'/>
 <data key='cic.selector.arch' value='x86'/>
 <data key='cic.selector.ws' value='gtk'/>
-<data key='user.ihs.allowNonRootSilentInstall' value='false'/>
+<data key='user.ihs.allowNonRootSilentInstall' value='true'/>
 <data key='user.ihs.http.server.service.name' value='none'/>
 <data key='user.ihs.httpPort' value='8080'/>
 <data key='user.ihs.installHttpService' value='false'/>
