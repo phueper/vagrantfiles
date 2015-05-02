@@ -25,7 +25,11 @@ execute "saveCredential" do
   user "vagrant"
   group "vagrant"
   cwd "/home/vagrant/was_8.5_install"
-  command ". /vagrant/was8_5_install/ibm_user.sh; tools/imutilsc saveCredential -userName ${IBM_USER} -userPassword ${IBM_PWD} -url http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL/repository.config"
+  # the IBM InstallationManager Tool has problem with IBMs https hosts... but www.ibm.com is redirected to an https url... so we hardcode http url for one of the webservers and hope that it remains available
+  # command ". /vagrant/was8_5_install/ibm_user.sh; tools/imutilsc saveCredential -userName ${IBM_USER} -userPassword ${IBM_PWD} -url http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL/repository.config"
+  command ". /vagrant/was8_5_install/ibm_user.sh; tools/imutilsc saveCredential -userName ${IBM_USER} -userPassword ${IBM_PWD} -url https://www-912.ibm.com/software/repositorymanager/V85WASDeveloperILANL/repository.config"
+  # also replace the URL in the install.xml
+  command "sed -e 's/www.ibm.com/www-912.ibm.com/g' -i install.xml"
 end
 
 execute "userinstc WAS8.5" do

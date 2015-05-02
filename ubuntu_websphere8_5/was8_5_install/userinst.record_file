@@ -3,7 +3,7 @@
 <agent-input acceptLicense='true'>
 <server>
 <repository location='/home/vagrant/was_8.5_install'/>
-<repository location='http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL'/>
+<repository location='http://www-912.ibm.com/software/repositorymanager/V85WASDeveloperILANL'/>
 </server>
 <profile id='IBM HTTP Server V8.5' installLocation='/home/vagrant/IBM/HTTPServer'>
 <data key='eclipseLocation' value='/home/vagrant/IBM/HTTPServer'/>
