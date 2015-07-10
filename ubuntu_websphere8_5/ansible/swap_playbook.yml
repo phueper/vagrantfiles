@@ -1,0 +1,48 @@
+---
+- name: playbook for swap file setup
+  hosts: all
+  remote_user: vagrant
+  sudo: yes
+  vars:
+    swap_file_path: /swapfile
+    swap_file_size_mb: 2048 # 2GB 
+  tasks:
+  
+  - name: Create swap file
+    command: dd if=/dev/zero of={{ swap_file_path }} bs=1024 count={{ swap_file_size_mb }}k
+             creates="{{ swap_file_path }}"
+  
+  - name: Change swap file permissions
+    file: path="{{ swap_file_path }}"
+          owner=root
+          group=root
+          mode=0600
+  
+  # this ensures that the mkswap below does not run if the file already is a swapfile!
+  - name: Check swap file type
+    command: file {{ swap_file_path }}
+    register: swapfile
+    tags:
+      - swap.file.mkswap
+  
+  - name: Make swap file
+    command: "mkswap {{ swap_file_path }}"
+    when: swapfile.stdout.find('swap file') == -1
+
+  - name: Write swap entry in fstab
+    mount: name=none
+           src={{ swap_file_path }}
+           fstype=swap
+           opts=sw
+           passno=0
+           dump=0
+           state=present
+  
+  - name: Mount swap
+    command: "swapon {{ swap_file_path }}"
+    when: ansible_swaptotal_mb < 1
+  
+  - name: Minimise swapiness (only on out of memory)
+    sysctl:
+        name: vm.swappiness
+        value: "0"

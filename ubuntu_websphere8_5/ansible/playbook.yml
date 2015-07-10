@@ -1,0 +1,26 @@
+---
+- name: playbook for system setup
+  hosts: all
+  remote_user: vagrant
+  sudo: yes
+  tasks:
+    - apt: update_cache=yes upgrade=dist
+
+    - apt: name=byobu state=latest
+      register: byobu_update
+      
+    - apt: name=git
+    - apt: name=openjdk-7-jdk
+
+    - name: disable stupid dash
+      command: debconf-set-selections /vagrant/was8_5_install/dash_debconf     
+
+    - name: reconfigure stupid dash
+      command: dpkg-reconfigure -f noninteractive dash
+
+  handlers:
+
+- include: swap_playbook.yml
+- include: vagrant_playbook.yml
+- include: was85_playbook.yml
+- include: rplan_profile_playbook.yml

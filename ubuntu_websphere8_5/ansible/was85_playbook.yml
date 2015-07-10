@@ -1,0 +1,26 @@
+---
+- name: playbook for WAS 8.5 Setup
+  hosts: all
+  remote_user: vagrant
+  sudo: no
+  vars:
+  tasks:
+    - name: unzip IM 1.8.3
+      shell: mkdir -p /vagrant/tmp/im_1.8.3; cd /vagrant/tmp/im_1.8.3; unzip /vagrant/was8_5_install/agent.installer.linux.gtk.x86_64_1.8.3000.20150606_0047.zip
+             creates=/vagrant/tmp/im_1.8.3/userinstc
+             
+    - name: install IM 1.8.3
+      shell: ./userinstc -s -sP -acceptLicense -input /vagrant/was8_5_install/userinstc.installationmanager_1.8.record
+             chdir=/vagrant/tmp/im_1.8.3
+             creates=/home/vagrant/IBM/InstallationManager/eclipse/IBMIM
+
+    - name: register user for WAS 8.5 repository
+      shell: . /vagrant/was8_5_install/ibm_user.sh; tools/imutilsc saveCredential -userName ${IBM_USER} -userPassword ${IBM_PWD} -url http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL/repository.config
+             chdir=/home/vagrant/IBM/InstallationManager/eclipse
+             creates=/home/vagrant/IBM/WebSphere/AppServer/bin/manageprofiles.sh
+
+    - name: install WAS 8.5
+      shell: ./IBMIM -s -sP -acceptLicense -input /vagrant/was8_5_install/IBMIM.install_was85.record
+             chdir=/home/vagrant/IBM/InstallationManager/eclipse
+             creates=/home/vagrant/IBM/WebSphere/AppServer/bin/manageprofiles.sh
+      

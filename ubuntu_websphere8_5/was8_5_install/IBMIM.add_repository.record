@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='/home/vagrant/IBM/IMShared'/>
+  </variables>
+  <server>
+    <repository location='http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL'/>
+  </server>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+</agent-input>

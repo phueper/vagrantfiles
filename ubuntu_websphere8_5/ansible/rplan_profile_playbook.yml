@@ -1,0 +1,12 @@
+---
+- name: playbook for profile creation in WAS 8.5
+  hosts: all
+  remote_user: vagrant
+  sudo: no
+  vars:
+  tasks:
+    - name: create profile
+      shell: ./IBM/WebSphere/AppServer/bin/manageprofiles.sh -create -templatePath /home/vagrant/IBM/WebSphere/AppServer/profileTemplates/default/ -profileName rplan-profile -profilePath /home/vagrant/IBM/WebSphere/AppServer/profiles/rplan-profile/ -applyPerfTuningSetting development
+             chdir=/home/vagrant
+             creates=/home/vagrant/IBM/WebSphere/AppServer/profiles/rplan-profile/
+      

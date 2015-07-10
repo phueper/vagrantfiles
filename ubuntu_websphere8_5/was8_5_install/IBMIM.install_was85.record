@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='/home/vagrant/IBM/IMShared'/>
+  </variables>
+  <server>
+    <repository location='http://www.ibm.com/software/repositorymanager/V85WASDeveloperILANL'/>
+  </server>
+  <profile id='IBM HTTP Server V8.5' installLocation='/home/vagrant/IBM/HTTPServer'>
+    <data key='cic.selector.arch' value='x86'/>
+    <data key='user.ihs.allowNonRootSilentInstall' value='true'/>
+    <data key='user.ihs.http.server.service.name' value='none'/>
+    <data key='user.ihs.httpPort' value='8080'/>
+    <data key='user.ihs.installHttpService' value='false'/>
+  </profile>
+  <install>
+    <!-- IBM HTTP Server for WebSphere Application Server (ILAN) 8.5.5.6 -->
+    <offering profile='IBM HTTP Server V8.5' id='com.ibm.websphere.IHSILAN.v85' version='8.5.5006.20150529_0536' features='core.feature,arch.64bit'/>
+  </install>
+  <profile id='IBM WebSphere Application Server V8.5' installLocation='/home/vagrant/IBM/WebSphere/AppServer'>
+    <data key='cic.selector.arch' value='x86'/>
+  </profile>
+  <install>
+    <!-- IBM WebSphere Application Server for Developers (ILAN) 8.5.5.6 -->
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.DEVELOPERSILAN.v85' version='8.5.5006.20150529_0536' features='core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit,samples'/>
+    <!-- IBM WebSphere SDK Java Technology Edition (Optional) 7.0.9.0 -->
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v70' version='7.0.9000.20150528_2007' features='com.ibm.sdk.7'/>
+  </install>
+  <profile id='Web Server Plug-ins for IBM WebSphere Application Server V8.5' installLocation='/home/vagrant/IBM/WebSphere/Plugins'>
+    <data key='cic.selector.arch' value='x86'/>
+  </profile>
+  <install>
+    <!-- Web Server Plug-ins for IBM WebSphere Application Server (ILAN) 8.5.5.6 -->
+    <offering profile='Web Server Plug-ins for IBM WebSphere Application Server V8.5' id='com.ibm.websphere.PLGILAN.v85' version='8.5.5006.20150529_0536' features='core.feature,com.ibm.jre.6_64bit'/>
+  </install>
+  <profile id='WebSphere Customization Toolbox V8.5' installLocation='/home/vagrant/IBM/WebSphere/Toolbox'>
+    <data key='cic.selector.arch' value='x86'/>
+  </profile>
+  <install>
+    <!-- WebSphere Customization Toolbox (ILAN) 8.5.5.6 -->
+    <offering profile='WebSphere Customization Toolbox V8.5' id='com.ibm.websphere.WCTILAN.v85' version='8.5.5006.20150529_0536' features='core.feature,pct,zpmt,zmmt'/>
+  </install>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+</agent-input>

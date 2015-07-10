@@ -1,0 +1,17 @@
+---
+- name: playbook for vagrant user
+  hosts: all
+  remote_user: vagrant
+  sudo: no
+  tasks:
+    #- name: debug output byobu_update var
+    #  debug: var=byobu_update
+    - name: use ctrl-a screen mode
+      command: byobu-ctrl-a screen
+    - name: enable byobu on login
+      command: byobu-launcher-install
+    - name: enable byobu prompt
+      command: byobu-enable-prompt
+
+  handlers:
+
