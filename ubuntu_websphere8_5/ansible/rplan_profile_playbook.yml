@@ -9,4 +9,29 @@
       shell: ./IBM/WebSphere/AppServer/bin/manageprofiles.sh -create -templatePath /home/vagrant/IBM/WebSphere/AppServer/profileTemplates/default/ -profileName rplan-profile -profilePath /home/vagrant/IBM/WebSphere/AppServer/profiles/rplan-profile/ -applyPerfTuningSetting development
              chdir=/home/vagrant
              creates=/home/vagrant/IBM/WebSphere/AppServer/profiles/rplan-profile/
-      
+             
+    - name: increase admin console timeout
+      replace: dest=/home/vagrant/IBM/WebSphere/AppServer/profiles/rplan-profile/config/cells/ubuntu-was8Node01Cell/applications/isclite.ear/deployments/isclite/deployment.xml
+               regexp='(invalidationTimeout=)"30"' replace='\1"1440"' 
+               backup=yes
+               
+    - name: start WAS
+      shell: ./IBM/WebSphere/AppServer/profiles/rplan-profile/bin/startServer.sh server1
+             chdir=/home/vagrant
+                          
+    - name: create webserver config
+      shell: ./IBM/WebSphere/AppServer/bin/wsadmin.sh -f IBM/WebSphere/AppServer/bin/configureWebserverDefinition.jacl  webserver1 IHS /home/vagrant/IBM/HTTPServer /home/vagrant/IBM/HTTPServer/conf/httpd.conf 8080 MAP_ALL /home/vagrant/IBM/WebSphere/Plugins unmanaged ubuntu-was8Node01 ubuntu-was8 linux 8008 admin admin webserver1
+             chdir=/home/vagrant
+
+    - name: load was module in IHS Config
+      lineinfile: dest=/home/vagrant/IBM/HTTPServer/conf/httpd.conf 
+                  line="LoadModule was_ap22_module /home/vagrant/IBM/WebSphere/Plugins/bin/64bits/mod_was_ap22_http.so"
+
+    - name: load plugin cfg in IHS Config
+      lineinfile: dest=/home/vagrant/IBM/HTTPServer/conf/httpd.conf 
+                  line="WebSpherePluginConfig /home/vagrant/IBM/WebSphere/Plugins/config/webserver1/plugin-cfg.xml"
+
+    - name: start IHS
+      shell: ./IBM/HTTPServer/bin/apachectl start
+             chdir=/home/vagrant
+                          
